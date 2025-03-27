@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * A class that implements more tests for the Bank and BankAccount classes.
+ * @author Amaury Perraud
+ * @author Lilian LABAT
+ */
 public class MoreTests {
     private Bank bank;
     private BankAccount account1;
