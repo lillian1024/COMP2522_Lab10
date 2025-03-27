@@ -1,10 +1,11 @@
-﻿import java.util.HashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Manages a collection of BankAccount objects, allowing the addition of
  * new accounts and management through unique account IDs
  * @author Amaury Perraud
+ * @author Lilian LABAT
  */
 class Bank {
     private final Map<String, BankAccount> accounts;

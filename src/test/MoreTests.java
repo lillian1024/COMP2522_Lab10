@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @author Amaury Perraud
  */
 import static org.junit.jupiter.api.Assertions.*;

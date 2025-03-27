@@ -1,13 +1,14 @@
-﻿/**
+/**
  * Manages a bank account with functionalities such as
  * depositing, withdrawing, and balance enquiry
  * @author Amaury Perraud
+ * @author Lilian LABAT
  */
 public class BankAccount
 {
     private static final int MIN_ACCOUNT_BALANCE = 0;
     private static final int MAX_ACCOUNT_BALANCE;
-    private static final int MIN_DEPOSIT_BALANCE = 0;
+    private static final int MIN_DEPOSIT_AMOUNT = 0;
     private static final int MIN_WITHDRAW_BALANCE = 0;
 
     private final String name;
@@ -53,7 +54,7 @@ public class BankAccount
 
     private void validateDeposit(final int amountUsd)
     {
-        if (amountUsd < MIN_DEPOSIT_BALANCE)
+        if (amountUsd <= MIN_DEPOSIT_AMOUNT)
         {
             throw new IllegalArgumentException("Invalid deposit amountUsd");
         }
@@ -64,24 +65,43 @@ public class BankAccount
         }
     }
 
-    public void withdraw(final int amount)
+    public void withdraw(final int amountUsd)
     {
-        validateWithdraw(amount);
+        validateWithdraw(amountUsd);
 
-        balanceUsd -= amount;
+        balanceUsd -= amountUsd;
     }
 
     private void validateWithdraw(final int amountUsd)
     {
-        if (amountUsd < MIN_WITHDRAW_BALANCE)
+        if (amountUsd <= MIN_WITHDRAW_BALANCE)
         {
             throw new IllegalArgumentException("Invalid deposit amountUsd");
         }
 
         if (MIN_WITHDRAW_BALANCE + amountUsd > balanceUsd)
         {
-            throw new IllegalArgumentException("Max account balance exceeded");
+            throw new IllegalArgumentException("Insufficient funds");
         }
+    }
+
+    public void transferToBank(final BankAccount account, final String accountName, final int amountUsd)
+    {
+        validateBankTransfer(account, accountName, amountUsd);
+
+        this.withdraw(amountUsd);
+        account.deposit(amountUsd);
+    }
+
+    private void validateBankTransfer(final BankAccount account, final String accountName, final int amountUsd)
+    {
+        if (!accountName.equals(this.name))
+        {
+            throw new IllegalArgumentException("Account name does not match");
+        }
+
+        this.validateWithdraw(amountUsd);
+        account.validateDeposit(amountUsd);
     }
 
     public int getBalanceUsd()
