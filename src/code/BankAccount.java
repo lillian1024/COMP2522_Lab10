@@ -20,6 +20,11 @@ public class BankAccount
         MAX_ACCOUNT_BALANCE = Integer.MAX_VALUE;
     }
 
+    /**
+     * Create a new bank account using the specified arguments.
+     * @param name The name of the account
+     * @param balance The starting balance of the account
+     */
     public BankAccount(final String name, final int balance)
     {
         validateAccountName(name);
@@ -45,6 +50,10 @@ public class BankAccount
         }
     }
 
+    /**
+     * Deposit specified amount to the account. If the amount is invalid or final balance exceeds
+     * @param amountUsd The amount to deposit
+     */
     public void deposit(final int amountUsd)
     {
         validateDeposit(amountUsd);
@@ -65,6 +74,10 @@ public class BankAccount
         }
     }
 
+    /**
+     * Withdraw specified amount to the account. If the amount is invalid or final balance exceeds
+     * @param amountUsd The amount to withdraw
+     */
     public void withdraw(final int amountUsd)
     {
         validateWithdraw(amountUsd);
@@ -85,6 +98,12 @@ public class BankAccount
         }
     }
 
+    /**
+     * Transfer the specified amount from this to specified account.
+     * @param account The account to transfer the money to
+     * @param accountName This account name
+     * @param amountUsd The amount to transfer
+     */
     public void transferToBank(final BankAccount account, final String accountName, final int amountUsd)
     {
         validateBankTransfer(account, accountName, amountUsd);
@@ -104,11 +123,19 @@ public class BankAccount
         account.validateDeposit(amountUsd);
     }
 
+    /**
+     * Return the balance of the account in USD.
+     * @return The balance USD
+     */
     public int getBalanceUsd()
     {
         return balanceUsd;
     }
 
+    /**
+     * Return the name of the account.
+     * @return The name of the account
+     */
     public String getAccountId()
     {
         return name;
