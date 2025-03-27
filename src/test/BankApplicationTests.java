@@ -83,8 +83,5 @@ void handlingInvalidAccountRetrieval() {
     bank2.retrieveAccount("00000"));
     assertEquals("Account not found", exception2.getMessage());
 }
-// Additional tests can include:
-// - Checking the initial balance correctness.
-// - Handling invalid operations.
-// - Summing balances from multiple accounts in a single bank.
+
 }
